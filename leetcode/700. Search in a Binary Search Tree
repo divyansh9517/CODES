@@ -1,0 +1,44 @@
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        if(root == NULL)
+        {
+            return NULL;
+        }
+        while(root != nullptr && root->val != val)
+        {
+            if(root->val < val)
+            {
+               root = searchBST(root->right ,val);
+            }
+            else
+            {
+              root =  searchBST(root->left,val);
+            }
+        }
+        return root;
+    }
+};
+
+// 2. method 
+class Solution {
+public:
+    TreeNode* searchBST(TreeNode* root, int val) {
+        if(root->val == val)
+        {
+            return root;
+        }
+        while(root != nullptr && root->val != val)
+        {
+            if(root->val < val)
+            {
+                root = root->right;
+            }
+            else
+            {
+                root = root->left;
+            }
+        }
+        return root;
+    }
+};

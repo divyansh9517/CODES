@@ -1,0 +1,41 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+        // step 1 
+
+        if(height.empty())
+        {
+            return 0;
+        }
+        int n = height.size();
+
+        vector<int> lb(n);
+        vector<int> rb(n);
+
+        // step 2
+
+        // initialization of left boundary array
+        lb[0] = height[0];
+        for(int i = 1 ;i < n ; i++)
+        {
+            lb[i] = max(height[i],lb[i-1]);
+        }
+        // intializing right boundary
+        rb[n-1] = height[n-1];
+        for(int i = n-2 ; i >= 0 ; i--)
+        {
+            rb[i] =  max(height[i],rb[i+1]);
+        }
+
+        //step 3 
+        int result = 0 ;
+        // yaha pr min i <= n -2 krna bhulta hu
+        
+        for(int i = 1 ;i <= n - 2 ; i++)
+        {
+            result += min(lb[i],rb[i])-height[i];
+        }
+        return result;
+
+    }
+};

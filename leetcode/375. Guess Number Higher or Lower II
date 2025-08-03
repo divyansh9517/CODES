@@ -1,0 +1,52 @@
+class Solution {
+public:
+    int solve(int s,int e,vector<vector<int>> &dp)
+    {
+
+        if(s >= e)
+        {
+            return 0;
+        }
+        int ans = INT_MAX;
+        if(dp[s][e]  != -1)
+        {
+            return dp[s][e];
+        }
+        for( int i = s;  i <=e;i++)
+        {
+            ans = min(ans,i+max(solve(s,i-1,dp),solve(i+1,e,dp)));
+        }
+        dp[s][e] = ans;
+        return dp[s][e];
+    }
+
+    // tab
+    int solveT(int n)
+    {
+        vector<vector<int>> dp(n+2,vector<int>(n+1,0));
+
+        for(int st = n-1 ; st >= 1;st--)
+        {
+            for(int ed = 1; ed <= n ;ed++)
+            {
+                if(st >= ed)
+                {
+                    continue;
+                }
+                int ans  = INT_MAX;
+
+                for(int  i=   st ; i <=  ed ;i++)
+                {
+                    ans = min(ans, i+max(dp[st][i-1],dp[i+1][ed]));
+                }
+                dp[st][ed] = ans;
+            }
+        }
+        return dp[1][n];
+    }
+
+    int getMoneyAmount(int n) {
+        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
+        return solveT(n);
+    }
+};

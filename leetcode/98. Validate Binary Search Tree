@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool solve(TreeNode* root , long long int lowerBond , long long int upperBond)
+    {
+        if(root == NULL)
+        {
+            return true;
+        }
+
+        bool cond1 = (root->val > lowerBond);
+        bool cond2 = (root->val < upperBond);
+        bool leftAns = solve(root->left,lowerBond,root->val);
+        bool rightAns = solve(root->right,root->val,upperBond);
+
+        if(cond1 && cond2 && leftAns && rightAns)
+            return true;
+        else
+            return false;
+    }
+    bool isValidBST(TreeNode* root) {
+        long long int lowerBond = -2147483657;
+        long long int upperBond = 2147483657;
+        
+        bool ans = solve(root,lowerBond, upperBond);
+        return ans;
+    }
+};

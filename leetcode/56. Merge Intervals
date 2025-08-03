@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        //sort kro sabse pehly 
+        sort(intervals.begin(),intervals.end());
+        //create an 2d array
+        
+        vector<vector<int>> dummy;
+        for(auto interval : intervals)
+        {
+            // Now applying bhramastra
+            
+
+            // agar dummy khali hia tho pehly do element daal do 
+            // fir next ek 1st se compare kro dummy ke last index ko angar chota hhai tho next interval daal do 
+            // dummy min
+            if(dummy.empty() || dummy.back()[1] < interval[0])
+            {
+                dummy.push_back(interval);
+            }
+            else
+            // varna tho max nikal lo dummy ke last ka aur interval se next vale ka 
+            // fir dummy min hi store kr lo last position pr 
+            {
+                dummy.back()[1] = max(dummy.back()[1] , interval[1]);
+            }
+
+        }
+        return dummy;
+    }
+};

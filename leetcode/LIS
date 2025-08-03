@@ -1,0 +1,28 @@
+Recursive solution
+#include<iostream>
+using namespace std;
+
+int solve(int arr[],int curr,int prev,int n)
+{
+    if(curr >n)
+    {
+        return 0;
+    }
+
+    int inc = 0;
+    //prev == -1 bhul sakty ho 
+    
+    if(prev == -1 || arr[curr] > arr[prev])
+    {
+        inc =1+solve(arr,curr+1,curr,n);
+    }
+    int exc = 0+solve(arr,curr+1,prev,n);
+    int ans = max(inc,exc);
+    return ans;
+}
+int main()
+{
+    int arr[8]={10,9,2,5,3,7,101,18};
+    int n = 8;
+    cout<<solve(arr,0,-1,n)<<endl;
+}

@@ -1,0 +1,33 @@
+class comp{
+    public:
+
+    bool operator()(const pair<string,int> &a,const pair<string,int> &b)
+    {
+        return (a.second == b.second) ? (a>b) : (a.second<b.second);
+    }
+};
+class Solution {
+public:
+    vector<string> topKFrequent(vector<string>& words, int k) {
+        unordered_map<string,int> mp;
+        for(auto &i :words)
+        {
+            mp[i]++;
+        }
+        vector<string> ans;
+        priority_queue<pair<string,int>,vector<pair<string,int>>,comp> p;
+        for(auto &i : mp)
+        {
+            p.push(i);
+        }
+        while(!p.empty()  && k--)
+        {
+            auto &elem =  p.top();
+            cout<<elem.first<<" "<<elem.second<<endl;
+            ans.push_back(elem.first);
+            p.pop();
+        }
+        return ans;
+        
+    }
+};

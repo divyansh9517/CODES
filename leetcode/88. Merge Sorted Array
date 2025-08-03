@@ -1,0 +1,32 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        vector<int> nums3;
+        int i = 0;
+        int  j = 0;
+        while(i<m && j<n)
+        while(i < m && j < n)
+        {
+            if(nums1[i] < nums2[j])
+            {
+                nums3.push_back(nums1[i++]);
+            }
+            else
+            {
+                nums3.push_back(nums2[j++]);
+            }
+        }
+        // copy first array element remaining
+        while(i < m)
+        {
+            nums3.push_back(nums1[i++]);
+        }
+        //copy second array element remaining
+        while(j < n)
+        {
+            nums3.push_back(nums2[j++]);
+        }
+        nums1.clear(); // clear the original vector
+        nums1 = nums3; // assign the merged vector back to nums1
+    }
+};

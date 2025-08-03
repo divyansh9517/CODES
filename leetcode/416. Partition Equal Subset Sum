@@ -1,0 +1,122 @@
+class Solution {
+public:
+
+    bool solve(vector<int>& nums,int index , int sum ,int target)
+    {
+        if(index >= nums.size())
+        {
+            return 0;
+        }
+        if(sum > target)
+        {
+            return 0;
+        }
+        if(sum == target)
+        {
+            return true;
+        }
+        int inc = solve(nums,index+1,sum+nums[index],target);
+        int exc = solve(nums,index+1,sum,target);
+        return inc || exc;
+    }
+
+    // by memoaization
+    bool solveMe(vector<int>& nums,int index , int sum ,int target,vector<vector<int>> &dp)
+    {
+        if(index >= nums.size())
+        {
+            return 0;
+        }
+        if(sum > target)
+        {
+            return 0;
+        }
+        if(sum == target)
+        {
+            return true;
+        }
+        if(dp[index][sum] != -1)
+        {
+            return dp[index][sum];
+        }
+        bool inc = solveMe(nums,index+1,sum+nums[index],target,dp);
+        bool exc = solveMe(nums,index+1,sum,target,dp);
+        dp[index][sum]=(inc||exc);
+        return dp[index][sum];
+    }
+
+
+    //solve by tab
+    bool solveTab(vector<int> &nums,int target)
+    {
+        int n = nums.size();
+        vector<vector<int>> dp(n+1,vector<int>(target+1,0));
+        for(int row = 0 ; row <= n ; row++)
+        {
+            dp[row][target] = 1;
+        }
+
+        for(int ind = n -1 ; ind >= 0 ; ind--)
+        {
+            for(int s = target ; s >=0 ;s--)
+            {
+                bool inc = 0;
+                if(s+nums[ind] <= target)
+                {
+                    inc = dp[ind+1][s+nums[ind]];
+                }
+                bool exc = dp[ind+1][s];
+                dp[ind][s]= (inc || exc);
+            }
+
+        }
+        return dp[0][0];
+    }
+    // solve by space optimisation
+    bool solveTabSO(vector<int> &nums,int target)
+    {
+        int n = nums.size();
+        vector<int> curr(target+1,0);
+        vector<int> next(target+1,0);
+        
+        curr[target] =1;
+        next[target] =1;
+
+        for(int ind = n -1 ; ind >= 0 ; ind--)
+        {
+            for(int s = target ; s >=0 ;s--)
+            {
+                bool inc = 0;
+                if(s+nums[ind] <= target)
+                {
+                    inc = next[s+nums[ind]];
+                }
+                bool exc = next[s];
+                curr[s]= (inc || exc);
+            }
+            next =curr;
+
+        }
+        return next[0];
+    }
+
+
+    bool canPartition(vector<int>& nums) {
+        int index = 0;
+        int totalSum = 0;
+        for(int i = 0 ; i < nums.size(); i++)
+        {
+            totalSum += nums[i];
+        }
+        if(totalSum & 1) // to check if the sum is odd or not  ye condition bhull jatey ho isko yaaad rakhna 
+        {
+            return false;
+        }
+        int target = totalSum/2;
+
+        int currSum=0;
+        vector<vector<int>> dp(nums.size()+1, vector<int>(target+1,-1));
+        bool ans = solveTabSO(nums,target);
+        return ans;
+    }
+};

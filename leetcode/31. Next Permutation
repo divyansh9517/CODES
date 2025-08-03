@@ -1,0 +1,45 @@
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        // i ko size -2 se initialize kr diya hia 
+      int i = nums.size()-2;
+      // ye while loop isliye use kiya hia taki check kr sake ki
+      // array descending min tho sorted nhi hia 
+      while(i >= 0 && nums[i+1]<=nums[i])
+      {
+        i--;
+      }  
+      // fir i  ko compare kr liya hai ki voh kahi 0 tho nhi ho gya uper 
+      if(i >= 0)
+      {
+        // store kr liya size-1 ko j min
+        int j = nums.size()-1;
+        // yaha pr check kr rhay nums[j] ko  nums[i]
+        while(nums[j] <= nums[i])
+        {
+            j--;
+        }
+        // ye swap function har baar chalega 
+        swaps(nums,i,j);
+      }
+      // reverse kr do descending ke case
+      reverse(nums.begin()+i+1,nums.end());
+    }
+    private :
+    void swaps(vector<int> &nums , int i , int j)
+    {
+        
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j]=temp;
+       
+    }
+};
+class Solution {
+public:
+
+    void nextPermutation(vector<int>& nums) {
+        // ye tho shudarshan chakra hai 
+        next_permutation(nums.begin(),nums.end());
+    }
+};

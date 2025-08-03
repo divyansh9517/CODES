@@ -1,0 +1,57 @@
+class BrowserHistory {
+    stack<string> browserStack , frwStack;
+public:
+    BrowserHistory(string homepage) {
+        browserStack.push(homepage);
+        
+    }
+    
+    void visit(string url) {
+        while(!frwStack.empty())
+        {
+            frwStack.pop();
+        }
+            browserStack.push(url);
+
+    }
+    
+    string back(int steps) {
+        while(steps--)
+        {
+            if(browserStack.size()>1)
+            {
+                frwStack.push(browserStack.top());
+                browserStack.pop();
+            }
+            else
+            {
+                break;
+            }
+        }
+        return browserStack.top();
+    }
+    
+    string forward(int steps) {
+        while(steps--)
+        {
+            if(!frwStack.empty())
+            {
+                browserStack.push(frwStack.top());
+                frwStack.pop();
+            }
+            else
+            {
+                break;
+            }
+        }
+        return browserStack.top();
+    }
+};
+
+/**
+ * Your BrowserHistory object will be instantiated and called as such:
+ * BrowserHistory* obj = new BrowserHistory(homepage);
+ * obj->visit(url);
+ * string param_2 = obj->back(steps);
+ * string param_3 = obj->forward(steps);
+ */

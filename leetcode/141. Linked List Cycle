@@ -1,0 +1,78 @@
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+      HashSet<ListNode> set = new HashSet<>();
+      ListNode temp = head;
+      while(temp!=null)
+      {
+          if(set.contains(temp))return true;
+          set.add(temp);
+          temp = temp.next;
+      } 
+      return false; 
+    }
+}
+
+in C++
+with 2 solution 
+1.  using fast and slow pointer 
+2. using unordered_map
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+
+        //solution using slow and fast pointer
+
+        // ListNode*  slow = head;
+        // ListNode* fast = head;
+
+        // while(fast != NULL && fast->next !=NULL)
+        // {
+        //     slow = slow->next;
+        //     fast= fast->next->next;
+        //     if(slow == fast)
+        //     {
+        //         return true;
+        //     }
+        // }
+        // return false;
+
+
+        //Now using map
+        unordered_map<ListNode*,bool> mapp;
+        ListNode* temp = head;
+
+        while(temp != NULL)
+        {
+            if(mapp.find(temp)!=mapp.end())
+            {
+                return true;
+            }
+            else
+            {
+                mapp[temp] = true;
+            }
+            temp = temp->next;
+        }
+        return false;
+    }
+};
