@@ -1,0 +1,16 @@
+int evenlyDivides(int n) {
+        // code here
+        int cnt = 0; 
+        int temp = n;
+        while(n != 0)
+        {
+            int rem = n%10;
+            if(rem != 0 && temp%rem ==0)
+            {
+                cnt = cnt+1;
+            }
+            
+            n = n/10;
+        }
+        return cnt;
+    }

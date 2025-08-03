@@ -1,0 +1,41 @@
+class Solution {
+  public:
+    // Function to find maximum product subarray
+    int maxProduct(vector<int> &arr) {
+        // Your Code Here
+        int n = arr.size();
+        
+        // fir prefix multiply ke liye prefix  = 1 aur same suffix multiply ke liye suffix = 1 
+        // aur ek maxi variable jaha pr maximum element pada hoga
+        int pref = 1 ;
+        int suff = 1 ;
+        int maxi = INT_MIN;
+        
+        
+        //looping through array
+        for(int i  =  0 ; i < n; i++)
+        {
+            
+            
+            // agar prefix multiply 0  ho gya hai tho 1 daal do prefix min varna tho prefix ki jo value hogi 
+            // vahi dal do 
+            pref = (pref == 0) ? 1 : pref;
+            // same as above
+            suff = (suff == 0) ? 1 : suff;
+            
+            
+            // yaha pr hu starting se array ko multiply kr rhy hai
+            pref = pref*arr[i];
+            
+            // yaha pr hum array ko peechey se multiply kr rhy hai 
+            suff = suff*arr[n -1 -i];
+            
+            
+            // yaha pr teeno min se jo sabse bada hoga valo maxi min  daal rhy hai 
+            // isliye hi {} ye vala bracket use kiye hia teeno min ek sath comparision krny ke liye
+            maxi = max({maxi,suff,pref});
+        }
+        return maxi;
+    }
+    
+    // this code will give time complexity ->  O(n)

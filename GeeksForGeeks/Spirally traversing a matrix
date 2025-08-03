@@ -1,0 +1,49 @@
+ vector<int> spirallyTraverse(vector<vector<int> > &mat) {
+        // code here
+        vector<int> ans;
+        int row = mat.size(), col = mat[0].size();
+        int rowStart = 0;
+        int rowEnd = row - 1;
+        
+        int colStart = 0;
+        int colEnd = col-1;
+        
+        while(rowStart <= rowEnd && colStart <= colEnd)
+        {
+            // topp traversal
+            for(int j = colStart ;j <= colEnd ;j++)
+            {
+                ans.push_back(mat[rowStart][j]);
+            }
+            rowStart++;
+            
+            // right side traversal
+            for(int j = rowStart ;j <=rowEnd;j++)
+            {
+                ans.push_back(mat[j][colEnd]);
+            }
+            colEnd--;
+            
+            // traversing bottom row
+            if(rowStart <= rowEnd)
+            {
+                for(int j = colEnd ; j >= colStart; j--)
+                {
+                    ans.push_back(mat[rowEnd][j]);
+                }
+                rowEnd--;
+            }
+            
+            
+            //traversing first column
+            if(colStart <= colEnd)
+            {
+                for(int j = rowEnd;j>=rowStart;j--)
+                {
+                    ans.push_back(mat[j][colStart]);
+                }
+                colStart++;
+            }
+        }
+        return ans;
+    }

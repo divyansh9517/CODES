@@ -1,0 +1,43 @@
+class Solution {
+  public:
+    vector<vector<int>> mergeOverlap(vector<vector<int>>& arr) {
+        // Code here
+        //step 1 2 d array banao 
+        vector<vector<int>> ans;
+        // purani vali array ko sort kr lo
+        sort(arr.begin(),arr.end());
+        
+        
+        // oth row ki 1 aur 2 vale start aur end min dal do 
+        int start = arr[0][0];
+        int end = arr[0][1];
+        
+        
+        // loop ko 1 se chalo kunki 0th row ho chuki hia 
+        for(int i = 1 ; i< arr.size() ; i++)
+        {
+            
+            // compare kro ki 1th row ko 1st element kya end se chotta hia 
+            // aagar hai tho end min arr[i][1] ko daal do 
+            if(arr[i][0] <= end)
+            {
+                end = max(end,arr[i][1]);
+            }
+            
+            // varna tho 2d matrix min start end ko dalo aur start end ki values change kr do 
+            else
+            {
+                ans.push_back({start,end});
+                start = arr[i][0];
+                end = arr[i][1];
+            }
+        }
+        
+        // last min ek interval bacheyga 
+        // usko bhi daal denngy
+        ans.push_back({start,end});
+        return ans;
+        
+        
+    }
+};

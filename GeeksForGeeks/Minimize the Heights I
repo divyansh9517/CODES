@@ -1,0 +1,36 @@
+class Solution {
+  public:
+    int getMinDiff(vector<int> &arr, int k) {
+        // code here
+        //sabse pehly array ko sort kr lo
+        sort(arr.begin(),arr.end());
+        int n = arr.size();
+        //step1
+        // last aur 1st ko minus kro 
+        int res = arr[n-1] - arr[0];
+        
+        //step2 
+        // loop chalao 1 se n-1 tak
+        
+        for(int i = 1  ; i < n ; i++)
+        {
+            //step 3
+            // minimum nikal lo pehley vale se sabka
+            // aur 0th vale min k ko add kro aur ith vale min k ko minus
+            
+            int mini = min(arr[0]+k, arr[i]-k);
+            
+            //step 4 maximum nikal lo last se agey valo ke sath
+            
+            int maxi = max(arr[n-1]-k, arr[i-1]+k);
+            
+            //fir maxi aur mini ko substract kr do ab smallest aur greatest mil gya hoga array ka 
+            
+            int sub = maxi-mini;
+            
+            //step 5
+            res = min(res,sub);
+        }
+        return res;
+    }
+};

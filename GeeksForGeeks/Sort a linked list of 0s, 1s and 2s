@@ -1,0 +1,47 @@
+class Solution {
+  public:
+    // Function to sort a linked list of 0s, 1s and 2s.
+    Node* segregate(Node* head) {
+
+        // Add code here
+        
+        vector<int> arr;
+        Node* temp = head;
+        while(temp != NULL)
+        {
+            arr.push_back(temp->data);
+            temp =temp->next;
+        }
+        
+        
+        int mid = 0 ;
+        int high = arr.size()-1;
+        int low = 0;
+        
+        while(mid <= high)
+        {
+            if(arr[mid] == 0)
+            {
+                swap(arr[low++],arr[mid++]);
+            }
+            else if(arr[mid] == 1)
+            {
+                mid++;
+            }
+            else{
+                swap(arr[mid],arr[high--]);
+            }
+        }
+        
+        
+        Node* newNode = new Node(arr[0]);
+        
+        Node* curr = newNode;
+
+        for (int i = 1; i < arr.size(); i++) {
+            curr->next = new Node(arr[i]);
+            curr = curr->next;
+        }
+        return newNode;
+    }
+};

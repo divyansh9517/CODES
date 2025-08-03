@@ -1,0 +1,33 @@
+int minSwap(vector<int>& arr, int k) {
+        // code here
+        int n = arr.size();
+    int count_k = 0;
+    for (int num : arr) {
+        if (num <= k) {
+            count_k++;
+        }
+    }
+    
+    if (count_k == 0) return 0;
+
+    int bad_count = 0;
+    for (int i = 0; i < count_k; i++) {
+        if (arr[i] > k) {
+            bad_count++;
+        }
+    }
+
+    int min_swaps = bad_count;
+
+    for (int i = count_k; i < n; i++) {
+        if (arr[i - count_k] > k) {
+            bad_count--;
+        }
+        if (arr[i] > k) {
+            bad_count++;
+        }
+        min_swaps = min(min_swaps, bad_count);
+    }
+
+    return min_swaps;
+    }

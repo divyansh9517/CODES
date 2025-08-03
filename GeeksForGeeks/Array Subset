@@ -1,0 +1,36 @@
+class Solution {
+  public:
+    // Function to check if b is a subset of a
+    bool isSubset(vector<int> &a, vector<int> &b) {
+        // Your code here 
+        int n = a.size();
+        int m = b.size();
+        bool ans = true;
+        unordered_map<int,int> map;
+        for(int i = 0; i< n ; i++)
+        {
+            map[a[i]]++;
+        }
+        
+        for(int i = 0 ;  i < m ; i++)
+        {
+            if(map.find(b[i]) == map.end())
+            {
+                ans = false;
+            }
+            else
+            {
+                if(map[b[i]]>0)
+                {
+                    map[b[i]]--;
+                }
+                else
+                {
+                    ans = false;
+                    break;
+                }
+            }
+        }
+        return ans;
+    }
+};

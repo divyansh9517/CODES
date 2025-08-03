@@ -1,0 +1,68 @@
+class Solution {
+  public:
+    // Function to find the sum of contiguous subarray with maximum sum.
+    int maxSubarraySum(vector<int> &arr) {
+        // code here...
+        
+        
+        
+        // max ko 1s element se start kiya
+        int maxi = arr[0];
+        
+        
+        // methon 1
+        
+        // for(int i = 0 ; i < arr.size() ; i++)
+        // {
+        //     int sum = 0 ; 
+        //     for(int  j = i ; j < arr.size() ; j++)
+        //     {
+        //         sum +=arr[j];
+        //     }
+        //     maxi = max(maxi,sum);
+        // }
+        
+        
+        // sum  ko 0 se lelo
+        
+        // method 2 (kadenn's algorithm)
+        int sum = 0;
+        
+        // loop 0 se chalao end tak
+        for(int i = 0; i < arr.size(); i++)
+        {
+           // int sum = arr[0];
+           
+            // sum min element ko ko addd kro
+           sum+=arr[i];
+           
+            // if (sum > 0 )
+            // {
+                
+            //     maxi = sum;
+            // }
+            
+            // maximum nikal lo dono ka 
+            maxi = max(maxi,sum);
+            
+            // lag sum 0 se kam hai tho sum min 0 daal do
+            if(sum < 0)
+            {
+                sum = 0;
+            }
+            
+            
+        }
+        // maxi ko print kr do 
+        return maxi;
+    }
+    
+    //method 1 
+    // tc = O(n^2)
+    // sc = O(1)
+    
+    
+    // method 2
+    // tc = O(n)
+    // sc = O(1)
+};

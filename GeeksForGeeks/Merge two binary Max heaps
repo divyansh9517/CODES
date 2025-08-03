@@ -1,0 +1,33 @@
+void heapify(vector<int> &v,int idx , int n)
+{
+  while(true)
+  {
+    int leftIdx = 2*i + 1 // starting from 0th index
+    int rightIdx = 2*i + 2; 
+    int swapIdx = idx;
+    if(leftIdx < n && v[leftIdx] > v[idx]){
+    swapIdx = leftIdx;
+    }
+    if(rightIdx < n && v[rightIdx] > v[swapIdx]{
+    swapIdx = rightIndx;
+    }
+
+    if(idx == swapIdx)
+    {
+        break;
+    }
+    swap(v[swapIdx] , v[idx]);
+    idx = swapIdx;
+  }
+}
+
+vector<int> mergeHeaps(vector<int> &a, vector<int> &b, int n, int m) {
+        // your code here
+        vector<int> c(a.begin(),a.end());
+        c.insert(c.end(),b.begin(),b.end());
+        for(int i = (c.size()/2) - 1 ; i>= 0 ; i--)
+        {
+            heapify(c,i,c.size());
+        }
+        return c;
+    }

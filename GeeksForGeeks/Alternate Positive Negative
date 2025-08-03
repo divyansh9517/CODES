@@ -1,0 +1,56 @@
+class Solution {
+  public:
+    void rearrange(vector<int> &arr) {
+        // code here
+        
+        // sbse pehly so array bana lo 
+        // pos , negative ki
+        
+        vector<int> pos,neg;
+        
+        // fir positive number ko ek taraf aur negative number ko ek taraf rakh lo
+        for(int i = 0 ; i < arr.size(); i++)
+        {
+            // positive number ke liye
+            if(arr[i]>=0)
+            {
+                pos.push_back(arr[i]);
+            }
+            // negative number ke liye
+            else
+            {
+                neg.push_back(arr[i]);
+            }
+        }
+        
+        
+        int posInde = 0;
+        int negInde = 0;
+        int i = 0;
+        // loop tak tak chalega jab tak donno min se koi bhi index arrey ke size tak nhi pahuch jati 
+        // ya fir dono hi
+        while(posInde < pos.size() && negInde < neg.size())
+        {
+            if(i % 2 == 0)
+            {
+                arr[i++] = pos[posInde++];
+            }
+            else{
+                arr[i++] = neg[negInde++];
+            }
+        }
+        
+        
+        // fir jo bhi bachey hue elements hai unke liye traversing
+        while(posInde < pos.size())
+        {
+            arr[i++] = pos[posInde++];
+        }
+        while(negInde < neg.size())
+        {
+            arr[i++] = neg[negInde++];
+        }
+        
+        
+    }
+};

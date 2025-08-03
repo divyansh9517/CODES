@@ -1,0 +1,26 @@
+class Solution {
+  public:
+    int totalElements(vector<int> &arr) {
+    int maxi = 0;
+    set<int> sett;
+    
+    for (int i = 0; i < arr.size(); i++) {
+        sett.clear();
+        
+        for (int j = i; j < arr.size(); j++) {
+            sett.insert(arr[j]);
+            
+            if (sett.size() <= 2) {
+                maxi = max(maxi, j - i + 1);
+            } else {
+                break;
+            }
+        }
+    }
+    
+    return maxi;
+}
+
+
+
+};

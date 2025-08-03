@@ -1,0 +1,21 @@
+int maxProfit(vector<int> &arr) {
+        // code here
+        int n= arr.size();
+        vector<int> profit(n,0);
+        
+        int maxi = arr[n-1];
+        for(int i = n-2 ; i >= 0 ; i--)
+        {
+            maxi = max(maxi,arr[i]);
+            profit[i] = max(profit[i+1],maxi-arr[i]);
+        }
+        
+        int res = 0; 
+        int mini = arr[0];
+        for(int i = 1 ; i < n ;i++)
+        {
+            mini = min(mini,arr[i]);
+            res = max(res,profit[i] + (arr[i] - mini));
+        }
+        return res;
+    }     

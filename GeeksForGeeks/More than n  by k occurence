@@ -1,0 +1,21 @@
+int countOccurence(vector<int>& arr, int k) {
+        // Your code here
+        int  n = arr.size();
+        
+        unordered_map<int,int> mapp;
+        for(int i = 0 ;i<n;i++)
+        {
+            mapp[arr[i]]++;
+        }
+        
+        int elem = n/k;
+        int count=0;
+        for(auto i : mapp)
+        {
+            if(i.second > elem)
+            {
+                count++;
+            }
+        }
+        return count;
+    }

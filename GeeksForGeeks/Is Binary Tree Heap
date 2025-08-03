@@ -1,0 +1,60 @@
+class Solution {
+  public:
+  
+    int nodeCount(struct Node* tree)
+    {
+        if(!tree) return 0;
+        int l = nodeCount(tree->left);
+        int r = nodeCount(tree->right);
+        return 1+l+r;
+    }
+    
+    bool isCBT(struct Node* tree,int n, int i)
+    {
+        if(!tree) return true;
+        if(i > n)
+        {
+            return false;
+        }
+        bool left = isCBT(tree->left , n, 2*i);
+        bool right = isCBT(tree->right, n , 2*i + 1);
+        return left && right;
+    }
+    
+    bool isMaxHeap(struct Node* tree)
+    {
+        if(!tree) return true;
+        int left = isMaxHeap(tree->left);
+        int right = isMaxHeap(tree->right);
+        int ans = false;
+        
+        if(!tree->left && !tree->right)
+        {
+            ans = true;
+        }
+        else if(tree->left && !tree->right)
+        {
+            if(tree->data > tree->left->data)
+            {
+                ans = true;
+            }
+        }
+        else
+        {
+            if(tree->data > tree->left->data && tree->data > tree->right->data)
+            {
+                ans = true;
+            }
+        }
+        return ans && left && right;
+        
+        
+    }
+    bool isHeap(struct Node* tree) {
+        // code here
+        int n = nodeCount(tree);
+        int i = 1;
+        return isCBT(tree,n,i)&&isMaxHeap(tree);
+        
+    }
+};

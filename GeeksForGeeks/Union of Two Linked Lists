@@ -1,0 +1,39 @@
+class Solution {
+  public:
+    struct Node* makeUnion(struct Node* head1, struct Node* head2) {
+        // code here
+        map<int ,Node*> mapp;
+        Node* curr = head1;
+        while(curr)
+        {
+            mapp[curr->data] = curr;
+            curr= curr->next;
+        }
+        curr  = head2;
+        while(curr)
+        {
+            mapp[curr->data] = curr;
+            curr = curr->next;
+        }
+        
+        Node* ul = NULL;
+        curr = 0;
+        //iterate kr lete hai 
+        for(auto it = mapp.begin() ; it != mapp.end() ; it++)
+        {
+            if(!ul)
+            {
+                ul = it->second;
+                curr = ul;
+            }
+            else
+            {
+                curr->next = it->second;
+                curr = curr->next;
+            }
+        }
+        curr->next = 0;
+        return ul;
+        
+    }
+};

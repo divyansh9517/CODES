@@ -1,0 +1,34 @@
+bool isPalinArray(vector<int> &arr) {
+        // code here
+        vector<int>  ans;
+        for(int i = 0 ; i < arr.size() ;i++)
+        {
+            int element = arr[i];
+            
+            int temp = element;
+            int sum = 0 ;
+            while(element!= 0)
+            {
+                int rem = element %10;
+                sum = sum*10 + rem;
+                element = element/10;
+            }
+            if(sum == temp){
+                ans.push_back(1);
+            }
+            else
+            {
+                ans.push_back(0);
+            }
+        }
+        
+        for(int i = 0 ;i < ans.size() ;i++)
+        {
+            if(ans[i] == 0)
+            {
+                return false;
+                break;
+            }
+        }
+        return true;
+    }

@@ -1,0 +1,27 @@
+ double medianOf2(vector<int>& a, vector<int>& b) {
+        // Your code goes here
+        vector<int> ans;
+        //int index = 0;
+        double median ;
+        for(int i = 0 ; i< a.size();i++)
+        {
+            ans.push_back(a[i]);
+        }
+        for(int i = 0; i < b.size() ;i++)
+        {
+            ans.push_back(b[i]);
+        }
+        
+        int n = ans.size();
+        sort(ans.begin(),ans.end());
+        
+        if(n % 2 == 0)
+        {
+            median = (ans[n/2] + ans[(n/2)-1])/2.0;
+        }
+        else
+        {
+            median = double(ans[(n-1)/2]);
+        }
+        return median;
+    }

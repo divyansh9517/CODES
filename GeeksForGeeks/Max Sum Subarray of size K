@@ -1,0 +1,66 @@
+int maximumSumSubarray(vector<int>& arr, int k) {
+        // int n = arr.size();
+        // if(n < k)
+        // {
+        //     return -1;
+        // }
+        
+        
+        // int maxi = 0;
+        // for(int i = 0 ; i <= n - k ; i++)
+        // {
+        //     int sum = 0 ;
+        //     for(int j = i ;j < i+k ; j++)
+        //     {
+        //         sum += arr[j];
+        //     }
+        //     maxi = max(maxi,sum);
+            
+        // }
+        // return maxi;
+        
+        
+        // int n = arr.size();
+        // if (n < k) return -1; 
+        
+        // int sum = 0, maxSum = 0;
+        
+        // for (int i = 0; i < k; i++) {
+        //     sum += arr[i];
+        // }
+        // maxSum = sum;
+        
+        
+        // for (int i = k; i < n; i++) {
+        //     sum += arr[i] - arr[i - k];  
+        //     maxSum = max(maxSum, sum);
+        // }
+        
+        // return maxSum;
+        
+        
+        int sum = 0 ; 
+        int n = arr.size() ; 
+        if(n < k){
+            return -1;
+        }
+        
+        for(int i  = 0 ; i < k ; i++)
+        {
+            sum += arr[i];
+        }
+        
+        int maxi = sum ;
+        int l = 0 ;
+        int r = k;
+        
+        while(r < n)
+        {
+            sum = sum - arr[l]+arr[r];
+            l++;
+            r++;
+            maxi = max(sum,maxi);
+            
+        }
+        return maxi;
+    }

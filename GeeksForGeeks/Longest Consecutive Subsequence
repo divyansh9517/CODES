@@ -1,0 +1,35 @@
+int longestConsecutive(vector<int>& arr) {
+        // Your code here
+        sort(arr.begin(),arr.end());
+        
+        int longest = 1 ,count = 1;
+        for(int i = 1; i < arr.size() ; i++)
+        {
+            
+            // yaha pr hum check kr rhy hai ki array min koi duplicate element tho nhi hai agar ha tho usko chod do 
+            if(arr[i] == arr[i-1])
+            {
+                continue;
+            }
+            
+            
+            
+            // yaha pr hum arr[i] vale element ko check kr rhy hia arr[i-1] minus  kr ke agar 1  aa gya tho count++
+            if(arr[i]-arr[i-1] == 1)
+            {
+                count++;
+            }
+            
+            // agar nhi aya tho longest ko count se compore kr rhy hia 
+            // aur jo bhi ayega usko simple longest min daal dengy 
+            else
+            {
+                longest = max(longest,count);
+                count = 1;
+            }
+        }
+        // ek baar yaha pr bhi compare kr rhy hai 
+        longest = max(longest,count);
+        return longest;
+        
+    }

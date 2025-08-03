@@ -1,0 +1,76 @@
+class Solution
+{
+    public:
+    void reverseKelements(queue<int> &q,int k)
+    {
+    int i = 0;
+    stack<int> st;
+    
+    for(int i = 0; i< k ;i++)
+    {
+            int element = q.front();
+            q.pop();
+            st.push(element);
+            
+  
+    }
+    while(!st.empty())
+    {
+            int element = st.top();
+            st.pop();
+            q.push(element);
+
+    }
+    for(int i = 0 ; i< q.size()-k;i++)
+    {
+        int temp = q.front();
+        q.pop();
+        q.push(temp);
+    }
+
+    }
+    
+    // Function to reverse first k elements of a queue.
+    queue<int> modifyQueue(queue<int> q, int k) {
+        // add code here.
+        reverseKelements(q,k);
+        return q;
+  
+{
+    public:
+    void reverseKelements(queue<int> &q,int k)
+    {
+    int i = 0;
+    stack<int> st;
+    
+    for(int i = 0; i< k ;i++)
+    {
+            int element = q.front();
+            q.pop();
+            st.push(element);
+            
+  
+    }
+    while(!st.empty())
+    {
+            int element = st.top();
+            st.pop();
+            q.push(element);
+
+    }
+    for(int i = 0 ; i< q.size()-k;i++)
+    {
+        int temp = q.front();
+        q.pop();
+        q.push(temp);
+    }
+
+    }
+    
+    // Function to reverse first k elements of a queue.
+    queue<int> modifyQueue(queue<int> q, int k) {
+        // add code here.
+        reverseKelements(q,k);
+        return q;
+    }
+};

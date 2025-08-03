@@ -1,0 +1,61 @@
+class Solution {
+  public:
+  
+    int minimum(int arr[], int n)
+    {
+        int maxi = INT_MIN;
+        for(int i = 0 ;i < n;i++)
+        {
+            maxi = max(maxi,arr[i]);
+        }
+        return maxi;
+    }
+    
+    int summ(int arr[], int n)
+    {
+        int sum = 0;
+        for(int i = 0 ; i < n ; i++)
+        {
+            sum+=arr[i];
+        }
+        return sum;
+    }
+  
+    int solve(int arr[],int n,int days)
+    {
+        int cntDay = 1;
+        int load = 0;
+        
+        for(int i = 0 ; i < n ; i++)
+        {
+            if(load+arr[i] > days)
+            {
+                cntDay += 1;
+                load = arr[i];
+            }
+            else{
+                load+= arr[i];
+            }
+        }
+        return cntDay;
+    }
+    int leastWeightCapacity(int arr[], int n, int d) {
+        // code here
+        int low = minimum(arr,n);
+        int high = summ(arr,n);
+        
+        while(low <= high)
+        {
+            int mid = (low+high)/2;
+            int ans = solve(arr,n,mid);
+            if(ans <= d)
+            {
+                high = mid-1;
+            }
+            else{
+            low = mid +1;
+            }
+        }
+        return low;
+    }
+};

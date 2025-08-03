@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    vector<int> lcmAndGcd(int a, int b) {
+    int minimum=min(a,b);
+    int gcd;
+    while(minimum>0){
+        if (a%minimum==0 && b %minimum==0){
+            gcd=minimum;
+            break;
+        }minimum--;
+        
+    }
+    int lcm=(a*b)/gcd;
+    return{lcm,gcd};
+    }
+};

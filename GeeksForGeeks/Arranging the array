@@ -1,0 +1,47 @@
+class Solution
+{
+    public:
+        void Rearrange(int arr[], int n)
+        {
+            // Your code goes here
+            
+            // create two stacks
+            stack<int> neg;
+            stack<int> pos;
+            
+            //int n = arr.length();
+            
+            // looping through n-1 to 0
+            for(int i = n-1;i>=0 ;i--)
+            {
+                // check element is less than 0 or not 
+                if(arr[i]<0)
+                {
+                    // if it is less than 0 then pushing in negative stack
+                    neg.push(arr[i]);
+                }
+                else
+                {
+                    // is it is greater then 0 or equals to push to positive stack
+                    pos.push(arr[i]);
+                }
+            }
+            int i = 0 ; 
+            
+            //  fill the element in original array  from negative stack
+            while(!neg.empty())
+            {
+                arr[i]=neg.top();
+                neg.pop();
+                i++;
+            }
+            
+            // fill the element in original array from positive stack
+            while(!pos.empty())
+            {
+                arr[i]= pos.top();
+                pos.pop();
+                i++;
+            }
+        }
+};

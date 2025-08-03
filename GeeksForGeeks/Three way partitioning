@@ -1,0 +1,27 @@
+void threeWayPartition(vector<int>& arr, int a, int b) {
+        // code here
+        int start = 0 ;
+        int end = arr.size() -1;
+        
+        int curr = 0;
+        while(curr <= end)
+        {
+            if(arr[curr]<a)
+            {
+                swap(arr[start],arr[curr]);
+                start++;
+                curr++;
+            }
+            else if(arr[curr]>b)
+            {
+                swap(arr[curr],arr[end--]);
+            }
+            else
+            {
+                curr++;
+            }
+        }
+    }
+
+// one more solution
+//sort(arr.begin(),arr.end());

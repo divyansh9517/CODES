@@ -1,0 +1,19 @@
+bool pairInSortedRotated(vector<int>& arr, int target) {
+        // code here
+        // step 1 create map
+        
+        unordered_map<int,int> mapp;
+        
+        
+        //step 2 traverse arrary
+        for(int i = 0 ;i < arr.size();i++)
+        {
+            int rem = target - arr[i];
+            if(mapp.find(rem) != mapp.end())
+            {
+                return true;
+            }
+            mapp[arr[i]] = i;
+        }
+        return false;
+    }

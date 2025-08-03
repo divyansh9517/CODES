@@ -1,0 +1,40 @@
+class Solution {
+  public:
+    // Function to return the count of number of elements in union of two arrays.
+    int findUnion(vector<int>& a, vector<int>& b) {
+        // code here
+        vector<int> ans;
+        int idx =0;
+         // Add all elements of 'a' to 'ans'
+        for (int i = 0; i < a.size(); i++) {
+            ans.push_back(a[i]);
+        }
+    
+        // Add all elements of 'b' to 'ans'
+        for (int i = 0; i < b.size(); i++) {
+            ans.push_back(b[i]);
+        }
+        
+        set<int> st;
+        for(int i = 0  ; i < ans.size() ;i++)
+        {
+            st.insert(ans[i]);
+
+        }
+        return st.size();
+    }
+};
+
+methon 2 
+
+ unordered_map<int,int> mp;
+        for(int i = 0 ; i < a.size() ; i++)
+        {
+            mp[a[i]]++;
+        }
+        for(int i = 0 ; i< b.size() ; i++)
+        {
+            mp[b[i]]++;
+        }
+        
+        return mp.size();

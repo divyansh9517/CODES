@@ -1,0 +1,38 @@
+bool hasTripletSum(vector<int> &arr, int target) {
+        // Your Code Here
+        
+        
+        // for(int i = 0 ; i < arr.size(); i++)
+        // {
+        //     for(int j = i+1 ; j < arr.size() ; j++)
+        //     {
+        //         for(int k = j+1 ; k < arr.size() ; k++)
+        //         {
+        //             int sum = arr[i] + arr[j] + arr[k]; 
+        //             if( sum == target){
+        //                 return true;
+        //             }
+        //         }
+        //     }
+        // }  
+        // tc -> O(n^3)
+        
+        sort(arr.begin(),arr.end());
+        int n = arr.size();
+        
+        for(int  i = 0 ; i < n -2; i++)
+        {
+            int left = i+1 ; 
+            int right = n -1;
+            while(left < right)
+            {
+                int sum = arr[i]+arr[left]+arr[right];
+                
+                if(sum == target) return true;
+                else if(sum < target) left++;
+                else right--;
+            }
+        }
+        return false;
+        // tc -> O(n^2)
+    }

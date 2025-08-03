@@ -1,0 +1,50 @@
+#include <unordered_map>
+
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+    Node(int val) : data(val), next(NULL) {}
+};
+
+class Solution {
+public:
+    Node* findIntersection(Node* head1, Node* head2) {
+        unordered_map<int, int> map;
+        Node* curr = head2;
+        
+        while (curr) {
+            map[curr->data]++;
+            curr = curr->next;
+        }
+        
+        Node* IL = NULL;
+        Node* it = NULL;
+        curr = head1;
+        
+        while (curr) {
+            if (map.find(curr->data) != map.end() && map[curr->data] > 0) {
+                Node* newNode = new Node(curr->data);
+                
+                if (!IL) {
+                    IL = newNode;
+                    it = IL;
+                } else {
+                    it->next = newNode;
+                    it = it->next;
+                }
+                
+                map[curr->data]--;
+            }
+            curr = curr->next;
+        }
+        
+        if (it) {
+            it->next = NULL;
+        }
+        
+        return IL;
+    }
+};
