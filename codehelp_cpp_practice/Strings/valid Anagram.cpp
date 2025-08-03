@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool checkAnangram(string &s,string &t)
+{
+    // if(s.length() != t.length())
+    // {
+    //     return false;
+    // }
+    sort(s.begin(),s.end());
+    sort(t.begin(),t.end());
+
+    return s == t;
+}
+int main()
+{
+    string s = "anagram";
+    string t = "naaram" ; 
+    cout<< checkAnangram(s,t);
+    return 0;
+}
