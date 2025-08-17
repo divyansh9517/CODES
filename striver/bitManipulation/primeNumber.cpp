@@ -36,6 +36,8 @@ bool primeCheck(int n){
     // }
 // }
 
+
+// TC -> O(N)
 int main(){
 
     int n = 780;
